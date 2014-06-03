@@ -1,0 +1,17 @@
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+<h1>Chapters</h1>
+<table class="table table-striped">
+    <tr>
+    <td>id</td><td>order</td><td>name</td>
+    </tr>
+% for chapter in sorted(chapters.values(), key=lambda k: k['chapter_order']):
+    <tr>
+    <td>${chapter['id']}</td><td>${chapter['chapter_order']}</td><td><a href="/chapters/edit/${chapter['id']}">${chapter['name']}</a></td>
+    </tr>
+% endfor
+</table>
+</div>
+</div>
+</div>
