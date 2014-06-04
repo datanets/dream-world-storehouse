@@ -1,0 +1,26 @@
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+<h1>Chapter Create</h1>
+<form action="/chapters/save" method="post" enctype="multipart/form-data">
+Name:<br />
+<input type="text" name="name" /><br /><br />
+
+Chapter Order:<br />
+<select name="chapter_order">
+% for item in chapter_order:
+<option value="${item}">${item}</option>
+% endfor
+</select><br /><br />
+
+Splash Image:<br />
+<input type="file" name="splash_image" /><br /><br />
+
+Audio Link:<br />
+<input type="text" name="audio_link" /><br /><br />
+
+<input type="submit" value="Save" class="btn btn-primary" />
+</form>
+</div>
+</div>
+</div>
