@@ -1,0 +1,35 @@
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+<h1>Chapter Edit</h1>
+<form action="/chapters/save" method="post" enctype="multipart/form-data">
+Name:<br />
+<input type="text" name="name" value="${chapter.name}" /><br /><br />
+
+Chapter Order:<br />
+<select name="chapter_order">
+% for item in chapter_order:
+% if item == chapter.chapter_order:
+<option value="${item}" selected="selected">${item}</option>
+% else:
+<option value="${item}">${item}</option>
+% endif
+% endfor
+</select><br /><br />
+
+Splash Image:<br />
+<input type="file" name="splash_image" /><br /><br />
+% if not chapter.splash_image is None:
+<img src="/${splash_images_url}${chapter.splash_image}" /><br />
+${chapter.splash_image}<br /><br />
+% endif
+
+Audio Link:<br />
+<input type="text" name="audio_link" value="${chapter.audio_link}" /><br /><br />
+
+<input type="hidden" name="id" value="${chapter.id}" />
+<input type="submit" value="Save" class="btn btn-primary" />
+</form>
+</div>
+</div>
+</div>
