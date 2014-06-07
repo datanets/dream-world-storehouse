@@ -1,0 +1,61 @@
+<script>
+$(function() {
+
+    // mini audio player
+    $(".audio").mb_miniPlayer({
+        width:240,
+        inLine:false
+    });
+
+    // set height of vertical banner
+    var vertical_banner_height = $('#lyrics').height();
+    $('.vertical_banner img').height(vertical_banner_height);
+});
+</script>
+<div class="container_12">
+<div class="grid_2 chapters">
+<h2>Chapters</h2>
+<ul>
+% for chapter in sorted(all_chapters.values(), key=lambda k: k['chapter_order']):
+<li>${chapter['chapter_order']}.<a href="/chapters/view/${chapter['id']}">${chapter['name']}</a></li>
+% endfor
+</ul>
+</div>
+<div class="grid_6" id="lyrics">
+% for chapter in chapters.values():
+<h2>${chapter.chapter_order}.${chapter.name}</h2>
+<div id="music_player">
+<a id="m1" class="audio {inLine:true, mp3:'${chapter.audio_link}'}" href="${chapter.audio_link}">${chapter.name}</a><br />
+<p><a href="${chapter.audio_link}">&lt;listen or download&gt;</a></p>
+</div>
+<ul>
+<% last_character = 0 %>
+% for passage in sorted(passages.values(), key=lambda k: k['passage_order']):
+<li class="quote" style="color:${characters[passage['character_id']]['color']};">
+<table>
+<tr>
+<td class="speaker">
+% if passage['character_id'] != last_character:
+<a href="/characters/view/${passage['character_id']}" style="color:${characters[passage['character_id']]['color']};border:0;">${characters[passage['character_id']]['name']}:</a>
+% endif
+</td>
+% if passage['soliloquy']:
+<td class="soliloquy" style="background-color:${characters[passage['character_id']]['background_color']};">${passage['body']}</td>
+% else:
+<td>${passage['body']}</td>
+% endif
+</tr>
+</table>
+</li>
+<% last_character = passage['character_id'] %>
+% endfor
+</ul>
+</div>
+<div class="grid_4">
+<h2>&nbsp;</h2>
+<div class="vertical_banner">
+<img src="/${splash_images_url}${chapter.splash_image}" style="width:100%;" />
+</div>
+</div>
+% endfor
+</div>
