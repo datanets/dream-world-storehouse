@@ -1,0 +1,17 @@
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+<h1>Characters</h1>
+<table class="table table-striped">
+    <tr>
+    <td>id</td><td>name</td>
+    </tr>
+% for character in sorted(characters.values(), key=lambda k: k['name']):
+    <tr>
+    <td>${character['id']}</td><td><a href="/characters/edit/${character['id']}">${character['name']}</a></td>
+    </tr>
+% endfor
+</table>
+</div>
+</div>
+</div>
