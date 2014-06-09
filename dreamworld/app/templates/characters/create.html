@@ -1,0 +1,23 @@
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+<h1>Character Create</h1>
+<form action="/characters/save" method="post" enctype="multipart/form-data">
+Name:<br />
+<input type="text" name="name" /><br /><br />
+
+Alias:<br />
+<input type="text" alias="alias" /><br /><br />
+
+Location:<br />
+<select name="location_id">
+% for location in sorted(locations.values(), key=lambda k: k['name']):
+<option value="${location['id']}">${location['name']}</option>
+% endfor
+</select><br /><br />
+
+<input type="submit" value="Save" class="btn btn-primary" />
+</form>
+</div>
+</div>
+</div>
