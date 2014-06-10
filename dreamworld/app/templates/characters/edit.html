@@ -1,0 +1,28 @@
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+<h1>Character Edit</h1>
+<form action="/characters/save" method="post" enctype="multipart/form-data">
+Name:<br />
+<input type="text" name="name" value="${character.name}" /><br /><br />
+
+Alias:<br />
+<input type="text" alias="alias" value="${character.alias}" /><br /><br />
+
+Location:<br />
+<select name="location_id">
+% for location in sorted(locations.values(), key=lambda k: k['name']):
+% if location['id'] == character.location_id:
+<option value="${location['id']}" selected="selected">${location['name']}</option>
+% else:
+<option value="${location['id']}">${location['name']}</option>
+% endif
+% endfor
+</select><br /><br />
+
+<input type="hidden" name="id" value="${character.id}" />
+<input type="submit" value="Save" class="btn btn-primary" />
+</form>
+</div>
+</div>
+</div>
