@@ -1,0 +1,12 @@
+<div class="container_12">
+<div class="grid_3">
+<h2>Characters</h2>
+<ul>
+% for character in sorted(characters.values(), key=lambda k: k['name']):
+<li><a href="/characters/view/${character['id']}">${character['name']}</a>${"<br />&nbsp;(" + character['alias'] + ")" if character['alias'] else ''}</li>
+% endfor
+</ul>
+</div>
+<div class="grid_9">
+</div>
+</div>
