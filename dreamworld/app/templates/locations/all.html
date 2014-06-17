@@ -1,0 +1,17 @@
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+<h1>Locations</h1>
+<table class="table table-striped">
+    <tr>
+    <td>id</td><td>name</td>
+    </tr>
+% for location in sorted(locations.values(), key=lambda k: k['name']):
+    <tr>
+    <td>${location['id']}</td><td><a href="/locations/edit/${location['id']}">${location['name']}</a></td>
+    </tr>
+% endfor
+</table>
+</div>
+</div>
+</div>
