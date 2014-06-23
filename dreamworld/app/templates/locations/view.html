@@ -1,0 +1,19 @@
+<div class="container_12">
+<div class="grid_3">
+<h2>Locations</h2>
+<ul>
+% for location in sorted(all_locations.values(), key=lambda k: k['name']):
+<li><a href="/locations/view/${location['id']}">${location['name']}</a></li>
+% endfor
+</ul>
+</div>
+<div class="grid_9">
+% for location in locations.values():
+<h2>${location.name}</h2>
+<table>
+<td class="label">Description:</td><td>${location.description}</td>
+</tr>
+</table>
+% endfor
+</div>
+</div>
