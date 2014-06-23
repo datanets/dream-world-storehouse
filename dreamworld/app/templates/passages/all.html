@@ -1,0 +1,17 @@
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+<h1>Passages</h1>
+<table class="table table-striped">
+    <tr>
+    <td>id</td><td>order</td><td>body</td>
+    </tr>
+% for passage in sorted(passages.values(), key=lambda k: (k['chapter_id'], k['passage_order'])):
+    <tr>
+    <td>${passage['id']}</td><td>${passage['passage_order']}</td><td><a href="/passages/edit/${passage['id']}">${passage['body']}</a></td>
+    </tr>
+% endfor
+</table>
+</div>
+</div>
+</div>
