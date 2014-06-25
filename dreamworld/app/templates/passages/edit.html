@@ -1,0 +1,57 @@
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+<h1>Passage Edit</h1>
+<form action="/passages/save" method="post">
+Body:<br />
+<textarea name="body" style="width:400px;height:100px;">${passage.body}</textarea><br /><br />
+
+Character:<br />
+<select name="character_id">
+% for character in sorted(characters.values(), key=lambda k: k['name']):
+% if character['id'] == passage.character_id:
+<option value="${character['id']}" selected="selected">${character['name']}</option>
+% else:
+<option value="${character['id']}">${character['name']}</option>
+% endif
+% endfor
+</select><br /><br />
+
+Soliloquy:<br />
+<select name="soliloquy">
+<option value="0">No</option>
+% if passage.soliloquy:
+<option value="1" selected="selected">Yes</option>
+% else:
+<option value="1">Yes</option>
+% endif
+</select><br /><br />
+
+Chapter:<br />
+<select name="chapter_id">
+% for chapter in sorted(chapters.values(), key=lambda k: k['chapter_order']):
+% if chapter['id'] == passage.chapter_id:
+<option value="${chapter['id']}" selected="selected">${chapter['chapter_order']}.${chapter['name']}</option>
+% else:
+<option value="${chapter['id']}">${chapter['chapter_order']}.${chapter['name']}</option>
+% endif
+% endfor
+</select><br /><br />
+
+Passage Order:<br />
+<select name="passage_order">
+% for item in passage_order:
+% if item == passage.passage_order:
+<option value="${item}" selected="selected">${item}</option>
+% else:
+<option value="${item}">${item}</option>
+% endif
+% endfor
+</select><br /><br />
+
+<input type="hidden" name="id" value="${passage.id}" />
+<input type="submit" value="Save" class="btn btn-primary" />
+</form>
+</div>
+</div>
+</div>
